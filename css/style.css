@@ -85,7 +85,7 @@ section li {
 .tooltip {
     visibility: hidden;
     opacity: 0;
-    width: 300px; /* Largeur plus grande */
+    width: 300px;
     background-color: #222;
     color: #fff;
     text-align: left;
@@ -93,7 +93,7 @@ section li {
     border-radius: 5px;
     position: absolute;
     top: 50%;
-    left: 110%; /* À droite de l'élément parent */
+    left: 110%;
     transform: translateY(-50%);
     z-index: 100;
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
@@ -112,6 +112,7 @@ section li {
     gap: 40px;
     align-items: flex-start;
     margin-top: 40px;
+    flex-wrap: wrap;
 }
 
 .texte {
@@ -127,12 +128,12 @@ section li {
     cursor: pointer;
 }
 
-/* Encadré toujours visible et fixé à droite */
+/* === Encadré toujours visible et responsive === */
 .encadre-haut {
     position: absolute;
-    top: 300px;                /* Position de départ */
-    right: 150px;
-    max-width: 300px;
+    top: 300px;
+    right: 60px;
+    width: 280px;
     min-height: 300px;
     background-color: #1a2b40;
     padding: 20px;
@@ -144,9 +145,8 @@ section li {
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    transition: top 0.4s ease-in-out; /* Animation douce */
+    transition: top 0.4s ease-in-out;
 }
-
 
 /* Texte à l'intérieur avec effet de fade */
 .texte-explication {
@@ -157,28 +157,18 @@ section li {
     opacity: 0;
 }
 
-/* Quand l'encadré devient actif (texte affiché) */
-.encadre.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* === Footer === */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #1a2b40;
-    color: #ccc;
-    margin-top: 40px;
-}
-
 /* === Responsive === */
 @media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
     .encadre-haut {
         position: static;
         width: 100%;
-        margin-top: 20px;
         max-width: none;
+        margin-top: 20px;
     }
 }
 
@@ -191,4 +181,19 @@ footer {
     section {
         padding: 20px 10px;
     }
+
+    .encadre-haut {
+        font-size: 0.9em;
+        padding: 15px;
+        min-height: 200px;
+    }
+}
+
+/* === Footer === */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a2b40;
+    color: #ccc;
+    margin-top: 40px;
 }
