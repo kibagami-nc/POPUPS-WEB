@@ -65,12 +65,8 @@ section h2 {
     color: #3498db;
 }
 
-section ul, section ol {
-    margin-left: 20px;
-}
-
 section li {
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 
 .Phishing {
