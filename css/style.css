@@ -1,195 +1,334 @@
-/* === Reset de base === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap');
+
+:root {
+    --bg: #000000;
+    --card-bg: rgba(10, 10, 10, 0.7);
+    --border: rgba(255, 255, 255, 0.1);
+    --primary: #00f2ff;
+    --primary-glow: rgba(0, 242, 255, 0.3);
+    --secondary: #ff0055;
+    --text-main: #ffffff;
+    --text-dim: #94a3b8;
+    --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* === Body global === */
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    overflow-x: hidden;
+}
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    line-height: 1.6;
-    background-color: #0f1a2b;
-    color: #f5f5f5;
-    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
 }
 
-/* === Header === */
+/* === Custom Scrollbar === */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* === Background Mesh === */
+.mesh-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 50%, #050505 0%, #000 100%);
+}
+
+.mesh-blob {
+    position: absolute;
+    width: 40vw;
+    height: 40vw;
+    background: var(--primary);
+    filter: blur(120px);
+    opacity: 0.1;
+    border-radius: 50%;
+    animation: floating 20s infinite alternate;
+}
+
+@keyframes floating {
+    0% {
+        transform: translate(-10%, -10%);
+    }
+
+    100% {
+        transform: translate(10%, 10%);
+    }
+}
+
+/* === Navigation === */
 header {
-    background-color: #1a2b40;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 3px solid #3498db;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
 }
 
-header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-size: 1.25rem;
+}
+
+.logo span {
+    color: var(--primary);
 }
 
 nav ul {
-    list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 2.5rem;
+    list-style: none;
 }
 
 nav a {
-    color: #ffffff;
     text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    transition: background 0.3s;
+    color: var(--text-dim);
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    transition: var(--transition);
 }
 
 nav a:hover {
-    background-color: #3498db;
+    color: var(--primary);
 }
 
-.hacking {
-    color: red;
-}
-
-/* === Sections === */
-section {
-    padding: 40px 20px;
-    max-width: 900px;
-    margin: auto;
-    border-bottom: 1px solid #2c3e50;
-}
-
-section h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #3498db;
-}
-
-section li {
-    margin-bottom: 40px;
-}
-
-.Phishing {
-    position: relative;
-    cursor: help;
-    color: #3498db;
-    border-bottom: 1px dotted #3498db;
-    display: inline-block;
-}
-
-/* Tooltip qui s'affiche à droite */
-.tooltip {
-    visibility: hidden;
-    opacity: 0;
-    width: 300px;
-    background-color: #222;
-    color: #fff;
-    text-align: left;
-    padding: 15px;
-    border-radius: 5px;
-    position: absolute;
-    top: 50%;
-    left: 110%;
-    transform: translateY(-50%);
-    z-index: 100;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Apparition au survol */
-.Phishing:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(-50%) translateX(10px);
-}
-
-.container {
+/* === Hero === */
+.hero {
+    height: 100vh;
     display: flex;
-    gap: 40px;
-    align-items: flex-start;
-    margin-top: 40px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 10%;
 }
 
-.texte {
-    flex: 1;
-    font-size: 1.2em;
-    color: #f5f5f5;
+h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -4px;
+    margin-bottom: 2rem;
 }
 
-.mot-cle {
-    color: #3498db;
-    font-weight: bold;
-    border-bottom: 1px dashed #3498db;
-    cursor: pointer;
+.hero p {
+    font-size: 1.25rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: reveal 0.8s forwards 0.5s;
 }
 
-/* === Encadré toujours visible et responsive === */
-.encadre-haut {
-    position: absolute;
-    top: 300px;
-    right: 60px;
-    width: 220px;
-    min-height: 300px;
-    background-color: #1a2b40;
-    padding: 20px;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 1em;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+@keyframes reveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cta-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #000;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px var(--primary-glow);
+}
+
+/* === Bento Grid (Risks) === */
+section {
+    padding: 120px 10%;
+}
+
+h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 4rem;
+    letter-spacing: -2px;
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.bento-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-item:hover {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.bento-item.large {
+    grid-column: span 2;
+}
+
+.bento-item .tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.bento-item h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.bento-item p {
+    color: var(--text-dim);
+    line-height: 1.5;
+}
+
+/* === Tips Section === */
+.tips-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.tip-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 1.5rem 2.5rem;
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    transition: top 0.4s ease-in-out;
+    gap: 2rem;
+    transition: var(--transition);
 }
 
-/* Texte à l'intérieur avec effet de fade */
-.texte-explication {
-    opacity: 1;
-    transition: opacity 0.4s ease;
-}
-.texte-explication.fade-out {
-    opacity: 0;
+.tip-card:hover {
+    transform: translateX(20px);
+    border-color: var(--primary);
 }
 
-/* === Responsive === */
-@media (max-width: 900px) {
-    .container {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .encadre-haut {
-        position: static;
-        width: 100%;
-        max-width: none;
-        margin-top: 20px;
-    }
-}
-
-@media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    section {
-        padding: 20px 10px;
-    }
-
-    .encadre-haut {
-        font-size: 0.9em;
-        padding: 15px;
-        min-height: 200px;
-    }
+.tip-card .num {
+    font-size: 3rem;
+    font-weight: 700;
+    opacity: 0.1;
 }
 
 /* === Footer === */
 footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #1a2b40;
-    color: #ccc;
-    margin-top: 40px;
+    padding: 60px 10%;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+}
+
+/* === Mobile === */
+/* === Cursor Tooltip === */
+.cursor-tooltip {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    max-width: 450px;
+    /* Increased width */
+    padding: 1.5rem 2rem;
+    /* Increased padding */
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid var(--primary);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    font-size: 1.1rem;
+    /* Enlarged text */
+    line-height: 1.6;
+    color: var(--text-main);
+    opacity: 0;
+    transform: translate(25px, 25px) scale(0.9);
+    /* Start slightly smaller */
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.cursor-tooltip.visible {
+    opacity: 1;
+    transform: translate(25px, 25px) scale(1);
+    /* Zoom in to full size */
+}
+
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 4rem;
+        letter-spacing: -2px;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .bento-item.large {
+        grid-column: auto;
+    }
 }
